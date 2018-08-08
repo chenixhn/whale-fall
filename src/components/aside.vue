@@ -10,7 +10,7 @@
                 @close="handleClose">
                 <el-submenu v-for="(item,key) in menu" :key="key" :index="item.router">
                     <template slot="title">
-                        <i class="el-icon-location"></i>
+                        <i class="el-icon-menu"></i>
                         <span>{{item.groupTitle}}</span>
                     </template>
                     <el-menu-item-group>
@@ -35,11 +35,13 @@
             return {
                 menu: [
                     {
-                        groupTitle: '导航1',
+                        groupTitle: '应用实例',
                         router: '/router11',
                         children: [
-                            {router: '/page1', title: '选项11', disabled: false},
-                            {router: '/page2', title: '选项12', disabled: false}
+                            {router: '/page1', title: 'vTable', disabled: false},
+                            {router: '/page2', title: '粒子特效', disabled: false},
+                            {router: '/page3', title: '计算属性-购物车', disabled: false},
+                            {router: '/page4', title: 'filter-时间格式化', disabled: false}
                         ]
                     },
                     {
