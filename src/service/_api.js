@@ -5,7 +5,7 @@ function _env() {
     return process.env.NODE_ENV || 'production';
 }
 
-const rootPath = '/src';
+const rootPath = '';
 const devApi = {
 
     // 字典-----start
