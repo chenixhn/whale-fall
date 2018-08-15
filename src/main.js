@@ -9,10 +9,12 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+import http from './utils/request';
 
 Vue.use(VueParticles);
 
 Vue.config.productionTip = false;
+Vue.prototype.$http = http;
 
 Vue.use(Element, {
     size: 'medium' // set element-ui default size
@@ -26,3 +28,4 @@ new Vue({
     components: {App},
     template: '<App/>'
 });
+

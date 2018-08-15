@@ -1,7 +1,7 @@
 import http from '@/utils/request';
 import api from './_api';
 
-const {apiTableList, apiSubmitLogin, apiDel, apiModOrAdd} = api;
+const {apiTableList, apiSubmitLogin, apiDel, apiModOrAdd, addUser, checkName} = api;
 
 /**
  * 登录
@@ -16,14 +16,38 @@ export function login(data) {
 }
 
 /**
- * 请求列表
- * @param params
+ * 注册
+ * @param data
  */
-export function fetchList(params) {
+export function doAddUser(data) {
+    return http({
+        url: addUser,
+        method: 'post',
+        data
+    });
+}
+
+/**
+ * 校验用户名
+ * @param data
+ */
+export function CheckName(data) {
+    return http({
+        url: checkName,
+        method: 'post',
+        data
+    });
+}
+
+/**
+ * 请求列表
+ * @param data
+ */
+export function fetchList(data) {
     return http({
         url: apiTableList,
-        method: 'get',
-        params: params
+        method: 'post',
+        data
     });
 }
 
@@ -32,6 +56,7 @@ export function fetchList(params) {
  * @param data
  */
 export function modOrAdd(data) {
+    console.log(data);
     return http({
         url: apiModOrAdd,
         method: 'post',

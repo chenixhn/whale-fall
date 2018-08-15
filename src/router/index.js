@@ -43,16 +43,6 @@ export default new Router({
                     path: '/page2',
                     name: 'page2',
                     component: _import('page2')
-                },
-                {
-                    path: '/page3',
-                    name: 'page3',
-                    component: _import('page3')
-                },
-                {
-                    path: '/page4',
-                    name: 'page4',
-                    component: _import('page4')
                 }
             ]
         }

@@ -7,32 +7,33 @@ function _env() {
 
 const rootPath = '';
 const devApi = {
-
-    // 字典-----start
+    // 列表
     apiTableList: `${rootPath}/mock/table_list.json`,
-    // 字典-----end
-
     // 登录
-    apiSubmitLogin: `${rootPath}/mock/common.json`,
-
+    apiSubmitLogin: `${rootPath}/mock/login.json`,
+    // 注册
+    addUser: `${rootPath}/mock/adduser.json`,
+    // 用户名校验
+    checkName: `${rootPath}/mock/checkname.json`,
     // 删除
-    apiDel: `${rootPath}/mock/common.json`
+    apiDel: `${rootPath}/mock/common.json`,
+    //修改
+    apiModOrAdd: `${rootPath}/mock/common.json`
 };
 
 const proApi = {
-
     // 列表
-    apiTableList: '/list',
-
+    apiTableList: '/users/getList',
     // 登录
-    apiSubmitLogin: '/login',
-
+    apiSubmitLogin: '/users/login',
+    // 注册
+    addUser: '/users/addUser',
+    // 用户名校验
+    checkName: '/users/checkName',
     // 删除
-    apiDel: '/del',
-
+    apiDel: '/users/mobileDel',
     // 添加修改
-    apiModOrAdd: '/modOrAdd'
-
+    apiModOrAdd: '/users/modOrAdd'
 };
 const api = _env() === 'development' ? devApi : proApi;
 export default api;

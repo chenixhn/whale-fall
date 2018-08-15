@@ -29,7 +29,8 @@
         "v-charts": "^1.17.8",
         "vue": "^2.5.16",
         "vue-router": "^3.0.1",
-        "vuex": "^3.0.1"
+        "vuex": "^3.0.1",
+        "body-parser": "^1.18.3"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",

@@ -1,12 +1,19 @@
 <template>
-    <el-row class="tac">
+    <el-row class="tac" v-if="username">
         <el-col>
+            <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+  <el-radio-button :label="false">展开</el-radio-button>
+  <el-radio-button :label="true">收起</el-radio-button>
+</el-radio-group> -->
+            <div class="logo" :class="{some:isCollapse}"></div>
             <el-menu
+                :collapse="isCollapse"
                 :unique-opened="true"
                 :default-active="activeMenuIndex"
                 class="el-menu-vertical-demo"
                 :router="true"
                 @open="handleOpen"
+                :collapse-transition="false"
                 @close="handleClose">
                 <el-submenu v-for="(item,key) in menu" :key="key" :index="item.router">
                     <template slot="title">
@@ -26,6 +33,7 @@
             </el-menu>
         </el-col>
     </el-row>
+    <div v-else class="nolo">无登录用户数据</div>
 </template>
 
 <script>
@@ -33,15 +41,14 @@
         name: 'sidebar',
         data: function () {
             return {
+                username: sessionStorage.username,
                 menu: [
                     {
-                        groupTitle: '应用实例',
+                        groupTitle: '功能实例',
                         router: '/router11',
                         children: [
-                            {router: '/page1', title: 'vTable', disabled: false},
-                            {router: '/page2', title: '粒子特效', disabled: false},
-                            {router: '/page3', title: '计算属性-购物车', disabled: false},
-                            {router: '/page4', title: 'filter-时间格式化', disabled: false}
+                            {router: '/page1', title: '用户联系人', disabled: false},
+                            {router: '/page2', title: '计算属性-购物车', disabled: false}
                         ]
                     },
                     {
@@ -54,6 +61,10 @@
                     }
                 ]
             };
+        },
+        props: {
+            isCollapse: Boolean,
+            require: true
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -71,3 +82,14 @@
         }
     };
 </script>
+<style lang="scss" scoped>
+    .logo {
+        height: 44px;
+        background: url("~@/assets/images/logo.jpeg") no-repeat 0 -23px;
+        background-size: cover;
+        &.some {
+            background: url("~@/assets/images/logo4.jpeg") no-repeat -20px 0;
+            background-size: 100px;
+        }
+    }
+</style>

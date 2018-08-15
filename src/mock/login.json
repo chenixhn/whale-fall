@@ -2,6 +2,7 @@
     "status": 0,
     "message": "登录成功",
     "data": {
-        "name": "name123"
+        "username": "superMan",
+        "id":"1"
     }
 }

@@ -1,9 +1,15 @@
 <template>
     <div>
         <div class="toolbar">
-            <el-button type="primary" @click="dialog.dialogFormVisible=true">添加</el-button>
+            <el-button type="primary" @click="reset('form')">添加</el-button>
+            <el-input
+                placeholder="请输入关键字检索"
+                :clearable="true"
+                prefix-icon="el-icon-search"
+                v-model="input21">
+            </el-input>
         </div>
-        <el-table :data="tableData.list">
+        <el-table :data="list">
             <el-table-column
                 align="center"
                 v-for="(item,key) in tableData.title"
@@ -32,11 +38,10 @@
              </div>
          </div>-->
         <el-dialog title="popup"
-                   @close="close('form')"
                    :visible.sync="dialog.dialogFormVisible">
             <el-form :model="dialog.form" :rules="dialog.rules" ref="form">
-                <el-form-item label="日期" :label-width="dialog.formLabelWidth" prop="date">
-                    <el-input v-model="dialog.form.date" auto-complete="off"></el-input>
+                <el-form-item label="手机号" :label-width="dialog.formLabelWidth" prop="mobile">
+                    <el-input v-model="dialog.form.mobile" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" :label-width="dialog.formLabelWidth" prop="name">
                     <el-input v-model="dialog.form.name" auto-complete="off"></el-input>
@@ -56,54 +61,66 @@
 <script>
     import {fetchList, del, modOrAdd} from '@/service/get_data';
 
-    let originData = '';
+    // let originData = '';
     export default {
         name: 'page1',
         data: function () {
             return {
+                input21: '',
+                loading: false,
                 tableData: {
                     title: [
-                        {label: '日期', prop: 'date'},
+                        {label: '手机号', prop: 'mobile'},
                         {label: '姓名', prop: 'name'},
                         {label: '地址', prop: 'address'}],
                     list: []
                 },
                 dialog: {
-                    formLabelWidth: '4em',
+                    formLabelWidth: '5em',
                     dialogFormVisible: false,
                     form: {
                         id: '',
-                        date: '',
+                        mobile: '',
                         name: '',
                         address: ''
                     },
                     rules: {
-                        date: [{required: true, message: '选择日期', trigger: 'blur'}],
+                        mobile: [{required: true, message: '输入手机号', trigger: 'blur'}],
                         name: [{required: true, message: '输入姓名', trigger: 'blur'}],
                         address: [{required: true, message: '输入地址', trigger: 'blur'}]
                     }
                 }
             };
         },
+        computed: {
+            list: function () {
+                return this.tableData.list.filter((item) => {
+                    return item.name.indexOf(this.input21) > -1 || item.mobile.indexOf(this.input21) > -1 || item.address.indexOf(this.input21) > -1;
+                });
+            }
+        },
         methods: {
             // 获取列表
-            getList(params) {
-                fetchList({params})
+            getList() {
+                const params = {userId: Number(sessionStorage.userId)};
+                fetchList(params)
                     .then((res) => {
-                        this.tableData.list = res.list;
+                        this.tableData.list = res.data ? res.data.list : [];
                     });
             },
             // 窗口被关闭时,清空表单校验以及数据
-            close(formName) {
-                this.$refs[formName].resetFields();
-                (originData) && (this.dialog.form = JSON.parse(originData));
+            reset(formName) {
+                // (originData) && (this.dialog.form = JSON.parse(originData));
+                this.dialog.dialogFormVisible = true;
+                this.$refs[formName] && this.$refs[formName].resetFields();
+                this.dialog.form.id = '';
             },
             // 查看数据
             view(data) {
-                originData = JSON.stringify(this.dialog.form);
+                // originData = JSON.stringify(this.dialog.form);
                 this.dialog.dialogFormVisible = true;
                 this.dialog.form.id = data.id;
-                this.dialog.form.date = data.date;
+                this.dialog.form.mobile = data.mobile;
                 this.dialog.form.name = data.name;
                 this.dialog.form.address = data.address;
             },
@@ -119,12 +136,7 @@
                             type: 'success',
                             message: '删除成功!'
                         });
-                    });
-                    this.getList();
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
+                        this.getList();
                     });
                 });
             },
@@ -132,7 +144,9 @@
             doSubmit(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        modOrAdd(this.dialog.form)
+                        let params = this.dialog.form;
+                        params.userId = Number(sessionStorage.userId);
+                        modOrAdd(params)
                             .then(() => {
                                 this.$message({
                                     type: 'success',
@@ -140,6 +154,7 @@
                                 });
                                 this.getList();
                                 this.dialog.dialogFormVisible = false;
+                                params = null;
                             });
                     } else {
                         console.log('error submit!!');

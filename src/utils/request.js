@@ -1,6 +1,6 @@
 import http from 'axios';
 import {Message} from 'element-ui';
-import router from '@/router/index';
+// import router from '@/router/index';
 import qs from 'qs';
 
 // const url = location.href;
@@ -11,10 +11,11 @@ function regExp(params) {
 }
 
 function regApi(api) {
-    return /getStatusDic|goods\/index|order\/payway/.test(api.request.responseURL);
+    console.log(api.request.responseURL);
+    return /getStatusDic|goods\/index|order\/payway|\/checkname|\/checkName/.test(api.request.responseURL);
 }
 
-const baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://127.0.0.1:8006/';
+const baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://localhost:3000/';
 http.defaults.baseURL = baseURL;
 // http.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -41,23 +42,31 @@ http.interceptors.response.use((response) => {
     // loadingInstance.close({background: 'rgba(0,0,0,.1)'});
     const data = response.data;
     if (response.status === 200) {
-        if (data.status == '-1') {
-            router.push('/login');
-        }
+        // if (data.status == '-1') {
+        //     router.push('/login');
+        // }
+        //此处应该为swich判断，对异常情况处理
         if (data.status !== 0 && !regApi(response)) {
-            Message({
-                showClose: true,
-                message: data.msg,
-                type: 'error'
-            });
-            return new Promise(() => {
-            });
+            switch (data.status) {
+                case -1:
+                    Message({
+                        showClose: true,
+                        message: data.message,
+                        type: 'error'
+                    });
+                    break;
+                default:
+                    break;
+            }
+            return new Promise(() => { });
         }
     }
     // 对响应数据做点什么
-    return data.data;
+    return data;
 }, (error) => {
     return Promise.reject(error);
 });
-
+// , (value) => {
+//     return Promise.resolve(value);
+// }
 export default http;
