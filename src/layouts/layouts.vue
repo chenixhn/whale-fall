@@ -108,7 +108,7 @@
         height: 100%;
         box-sizing: border-box;
         padding: $header-top+10px 10px 10px $aside-left+10px;
-        background: #eaeaea;
+        background: #f2f2f2;
         overflow: auto;
         &.some {
             padding: $header-top+10px 10px 10px 74px;
