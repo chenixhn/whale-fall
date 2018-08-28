@@ -43,6 +43,11 @@ export default new Router({
                     path: '/page2',
                     name: 'page2',
                     component: _import('page2')
+                },
+                {
+                    path: '/page3',
+                    name: 'page3',
+                    component: _import('page3')
                 }
             ]
         }

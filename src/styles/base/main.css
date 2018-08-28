@@ -1,3 +1,8 @@
+@charset "UTF-8";
+body {
+  user-select: none;
+}
+
 .el-dialog {
   background-color: #ecf5ff;
 }
@@ -31,4 +36,120 @@
 .toolbar .el-input {
   width: 30%;
   float: right;
+}
+
+.swiper-pagination-bullet-active {
+  background: #c20c0c;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.play_slider .el-slider__runway {
+  height: 4px;
+  cursor: default;
+  background-color: #a2a2a2;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.play_slider .el-slider__bar {
+  height: 4px;
+  cursor: default;
+  background-color: #c20c0c;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.play_slider .el-slider__button-wrapper {
+  top: -16px;
+  cursor: default;
+}
+
+.play_slider .el-slider__button {
+  width: 14px;
+  height: 14px;
+  border: solid 1px #ccc;
+  background-color: #fff;
+  font-size: 28px;
+  line-height: 14px;
+  text-align: center;
+  color: #c20c0c;
+  cursor: default;
+}
+
+.play_slider .el-slider__button:after {
+  display: block;
+  content: "·";
+}
+
+.play_slider .el-slider__button.hover {
+  transform: scale(1);
+}
+
+.play_slider .el-slider__button:active {
+  background-color: #dbdada;
+}
+
+.play_slider.vol_slider .el-slider__button {
+  width: 10px;
+  height: 10px;
+}
+
+.play_slider.vol_slider .el-slider__button:after {
+  display: block;
+  content: "";
+}
+
+.muc_box footer .el-col {
+  height: 60px;
+  line-height: 60px;
+}
+
+.muc_box footer .el-container {
+  min-height: 505px;
+}
+
+.muc_box footer .el-container .el-aside {
+  overflow: hidden;
+}
+
+.so .el-input__inner {
+  border-radius: 26px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.so .el-input__inner:focus {
+  border-color: transparent;
+}
+
+.so i.el-input__icon {
+  line-height: 30px;
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: transparent;
+}
+
+.el-table--medium th,
+.el-table--medium td {
+  padding: 4px 0;
+}
+
+.el-table .cell {
+  font-size: 12px;
 }

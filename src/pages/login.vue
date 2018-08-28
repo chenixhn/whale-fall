@@ -104,6 +104,7 @@
                 }
             };
             return {
+                vModel: '2',
                 formLabelWidth: '4em',
                 dialogFormVisible: false,
                 form: {

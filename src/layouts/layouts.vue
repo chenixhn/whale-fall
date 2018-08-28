@@ -76,6 +76,7 @@
         color: #fff;
         font-size: 14px;
         margin-left: $aside-left;
+        min-width: 500px;
         &.some {
             width: calc(100% - 64px);
             margin-left: 64px;
@@ -90,7 +91,6 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 1;
         width: $aside-left;
         height: 100%;
         box-sizing: border-box;
@@ -98,6 +98,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         color: #fff;
+        z-index: 9999999;
         &.some {
             width: 64px;
         }

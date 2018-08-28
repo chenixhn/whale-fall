@@ -4,3 +4,4 @@
 /server/**/*.*
 /*.js
 /test/unit/coverage/
+/src/assets/font_icon/

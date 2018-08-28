@@ -11,14 +11,16 @@ function regExp(params) {
 }
 
 function regApi(api) {
-    console.log(api.request.responseURL);
-    return /getStatusDic|goods\/index|order\/payway|\/checkname|\/checkName/.test(api.request.responseURL);
+    return /getStatusDic|goods\/index|order\/payway|\/checkname|\/checkName|\/songsearch|\/play|\/searchtip/.test(api.request.responseURL);
+}
+function regReq(api) {
+    return /songsearch|\/play|\/searchtip/.test(api);
 }
 
 const baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://localhost:3000/';
 http.defaults.baseURL = baseURL;
 // http.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 // 添加请求拦截器
 http.interceptors.request.use((config) => {
@@ -26,7 +28,7 @@ http.interceptors.request.use((config) => {
     // loadingInstance = Loading.service();
     temp.params = temp.params || {};
     temp.params._ = Date.now();// 防止请求缓存
-    if (!regExp(temp.headers['Content-Type'])) {
+    if (!regReq(temp.url) && !regExp(temp.headers['Content-Type'])) {
         temp.data = temp.data && qs.stringify(temp.data); // post处理
     }
 

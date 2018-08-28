@@ -76,3 +76,39 @@ export function del(data) {
     });
 }
 
+/**
+ * 关键字搜索
+ * @param data
+ */
+export function search(data) {
+    return http({
+        url: '/searchtip',
+        method: 'post',
+        data
+    });
+}
+
+/**
+ * 获取歌曲信息
+ * @param params
+ */
+export function getSongInfo(params) {
+    return http({
+        url: '/songsearch',
+        method: 'get',
+        params
+    });
+}
+
+/**
+ * 获取歌曲信息
+ * @param params
+ */
+export function goPlay(params) {
+    return http({
+        url: '/play',
+        method: 'get',
+        params
+    });
+}
+
