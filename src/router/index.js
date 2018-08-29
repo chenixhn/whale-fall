@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import layouts from '@/layouts/layouts';
+// import layouts from '@/layouts/layouts';
 
 /**
  * 模块导入
@@ -29,21 +29,19 @@ export default new Router({
         {
             path: '/home',
             name: 'layouts',
-            redirect: '/page1',
-            components: {
-                default: layouts
-            },
+            redirect: '/page3',
+            component: _import('page3'),
             children: [
-                {
-                    path: '/page1',
-                    name: 'page1',
-                    component: _import('page1')
-                },
-                {
-                    path: '/page2',
-                    name: 'page2',
-                    component: _import('page2')
-                },
+                // {
+                //     path: '/page1',
+                //     name: 'page1',
+                //     component: _import('page1')
+                // },
+                // {
+                //     path: '/page2',
+                //     name: 'page2',
+                //     component: _import('page2')
+                // },
                 {
                     path: '/page3',
                     name: 'page3',

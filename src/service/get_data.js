@@ -82,7 +82,7 @@ export function del(data) {
  */
 export function search(data) {
     return http({
-        url: '/searchtip',
+        url: 'http://searchtip.kugou.com/getSearchTip',
         method: 'post',
         data
     });
@@ -94,7 +94,7 @@ export function search(data) {
  */
 export function getSongInfo(params) {
     return http({
-        url: '/songsearch',
+        url: 'http://songsearch.kugou.com/song_search_v2',
         method: 'get',
         params
     });
@@ -106,7 +106,7 @@ export function getSongInfo(params) {
  */
 export function goPlay(params) {
     return http({
-        url: '/play',
+        url: 'http://www.kugou.com/yy/index.php',
         method: 'get',
         params
     });

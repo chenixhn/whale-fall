@@ -47,8 +47,8 @@
                         groupTitle: '功能实例',
                         router: '/router11',
                         children: [
-                            {router: '/page1', title: '用户联系人', disabled: false},
-                            {router: '/page2', title: '计算属性-购物车', disabled: false},
+                            // {router: '/page1', title: '用户联系人', disabled: false},
+                            // {router: '/page2', title: '计算属性-购物车', disabled: false},
                             {router: '/page3', title: '音乐播放器', disabled: false}
                         ]
                     },

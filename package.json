@@ -17,7 +17,9 @@
         "stylelint": "stylelint './src/**/*.scss' './src/**/*.vue' --config ./.stylelintrc",
         "precommit": "npm run stylelint && npm run eslint && npm run mocklint && npm run filenamelint",
         "build": "node build/build.js",
-        "eslintfix": "node_modules/.bin/eslint --fix './src/**/*.vue'"
+        "eslintfix": "node_modules/.bin/eslint --fix './src/**/*.vue'",
+        "electron_dev": "npm run build && electron build/electron.js",
+        "electron_build": "electron-packager ./dist/ --platform=mas --arch=x64 --icon=./src/assets/jy.ico --overwrite"
     },
     "dependencies": {
         "axios": "^0.18.0",
@@ -53,6 +55,8 @@
         "cross-env": "^5.0.1",
         "cross-spawn": "^5.0.1",
         "css-loader": "^0.28.0",
+        "electron": "^2.0.8",
+        "electron-packager": "^12.1.1",
         "eslint": "^4.15.0",
         "eslint-config-airbnb-base": "^11.3.0",
         "eslint-friendly-formatter": "^3.0.0",

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import '@/components/header';
+    import '@/pages/page3';
 
     export default {
         name: 'App'

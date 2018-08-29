@@ -66,7 +66,7 @@
 </template>
 
 <script>
-    import {login, doAddUser, CheckName} from '@/service/get_data';
+    import {doAddUser, CheckName} from '@/service/get_data';
 
     export default {
         data() {
@@ -140,12 +140,15 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        login(this.form)
-                            .then((res) => {
-                                sessionStorage.username = res.data.username;
-                                sessionStorage.userId = res.data.id;
-                                this.$router.push({path: '/home'});
-                            });
+                        sessionStorage.username = '浩仔';
+                        sessionStorage.userId = '1';
+                        this.$router.push({path: '/home'});
+                        // login(this.form)
+                        //     .then((res) => {
+                        //         sessionStorage.username = res.data.username;
+                        //         sessionStorage.userId = res.data.id;
+                        //         this.$router.push({path: '/home'});
+                        //     });
                     } else {
                         return false;
                     }

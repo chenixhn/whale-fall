@@ -543,7 +543,7 @@ export default {
     .muc_box {
         min-width: 1200px;
         border-radius: 10px;
-        border: 1px solid #b7b4b4;
+        background-color: #f1ece8;
         .muc_tle {
             min-width: 918px;
             height: 44px;
