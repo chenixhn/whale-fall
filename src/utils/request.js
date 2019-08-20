@@ -27,12 +27,14 @@ http.interceptors.request.use((config) => {
     const temp = config;
     // loadingInstance = Loading.service();
     temp.params = temp.params || {};
+    // temp.headers['cookie'] = `kg_mid=${Date.now()}`;
     temp.params._ = Date.now();// 防止请求缓存
     if (!regReq(temp.url) && !regExp(temp.headers['Content-Type'])) {
         temp.data = temp.data && qs.stringify(temp.data); // post处理
     }
 
     // 在发送请求之前做些什么
+    console.log(temp);
     return temp;
 }, function (error) {
     // 对请求错误做些什么

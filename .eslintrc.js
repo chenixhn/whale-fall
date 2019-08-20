@@ -71,6 +71,7 @@ module.exports = {
         "no-unused-vars": 1,// 未引用的变量
         "no-underscore-dangle": 0,// 下划线开头命名
         "no-tabs": 0,
+        'linebreak-style': ["off", "windows"],
         "spaced-comment": 0,// 注释符号前后空格
         "prefer-arrow-callback": 0,
         "arrow-body-style": 0,// 箭头函数格式

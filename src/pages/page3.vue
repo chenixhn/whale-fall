@@ -408,6 +408,7 @@ export default {
             this.isPlay(this.num);
         },
         setCurPlayLrcArr(lyrics) {
+            console.log(lyrics);
             if (lyrics.length === 0) {
             return;
             }
@@ -443,7 +444,11 @@ export default {
         isPlay(num) {
             const params = {
                 r: 'play/getdata',
-                hash: this.hashs[num]
+                hash: this.hashs[num],
+                album_id: this.songList[num].AlbumID,
+                dfid: '3w02R13628O70M9Vhg1bxPnu',
+                mid: '365f35938b5475fad9a1ca5ad997c536',
+                platid: 4
             };
             goPlay(params)
                 .then((res) => {
@@ -454,6 +459,7 @@ export default {
                     const aAudio = this.$refs.audio;
                     const _this = this;
                     aAudio.load();
+                    console.log(res.data);
                     this.setCurPlayLrcArr(res.data.lyrics);
                     setTimeout(function () {
                         aAudio.play();
@@ -690,7 +696,7 @@ export default {
                     .muc_top,
                     .muc_bom {
                         position: relative;
-                        width: 140px;
+                        width: 100px;
                     }
                     i.act {
                         color: #c20c0c;
