@@ -694,7 +694,7 @@ export default {
                     .muc_top,
                     .muc_bom {
                         position: relative;
-                        width: 140px;
+                        width: 120px;
                     }
                     i.act {
                         color: #c20c0c;
