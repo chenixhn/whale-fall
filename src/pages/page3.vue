@@ -443,7 +443,11 @@ export default {
         isPlay(num) {
             const params = {
                 r: 'play/getdata',
-                hash: this.hashs[num]
+                hash: this.hashs[num],
+                album_id: this.songList[num].AlbumID,
+                dfid: '3w02R13628O70M9Vhg1bxPnu',
+                mid: '365f35938b5475fad9a1ca5ad997c536',
+                platid: 4
             };
             goPlay(params)
                 .then((res) => {
